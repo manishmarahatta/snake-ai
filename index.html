@@ -1,0 +1,76 @@
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Snake</title>
+
+    <link rel="stylesheet" href="main.css">
+  </head>
+
+  <body>
+    <h1>Snake</h1>
+    <div style="float:left; position:relative">
+      <canvas id="canvas_grid" width="322px" height="322px" style="position:absolute; z-index:1">
+        Browser Won't Support, Update it fast!
+      </canvas>
+      <canvas id="canvas_snake" width="322px" height="322px">
+        Browser Won't Support, Update it fast!
+      </canvas>
+    </div>
+    <div style="float:left; padding-left:10px">
+      <div id="stats">
+        <h4>stats</h4>
+        <table>
+          <tr><td>length</td><td id="view_len">0</td></tr>
+          <tr><td>moves</td><td id="view_moves">0</td></tr>
+        </table>
+      </div>
+
+      <h4>
+        <input id="toggle_ai" type="checkbox" onclick="aiToggle()" />
+        bot
+      </h4>
+      <p>press 'a' to toggle bot</p>
+      <table>
+        <tr><td>nodes</td><td id="view_nodes">0</td>
+        <tr>
+          <td>path search</td>
+          <td>
+            <select id="select_ai">
+              <option value="a_star">A*</option>
+              <option value="bfs">Breath First Search</option>
+              <option value="dfs">Depth First Search</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div>
+
+
+      <input id="toggle_grid" type="checkbox" onclick="drawGridToggle(this)">grid</input>
+      <input id="toggle_wall" type="checkbox" onclick="wallToggle(this)">wall</input>
+      delay:
+      <input id="input_delay" type="number" onchange="delayChange(this)" min=0 max=200 step=5 value=100 />
+    </div>
+  </body>
+  <script src="snake.js"></script>
+  <script src="interface.js"></script>
+  <script src="pathfinding-browser.js"></script>
+  <script src="ai.js"></script>
+  <script>
+    banner("SNAKE");
+    window.addEventListener("keydown", keyBinding, true)
+    window.addEventListener(
+        "keydown",
+        function (event) {
+            if (event.keyCode == 65) {
+                aiToggle()
+            }
+        }
+    )
+  </script>
+</html>
